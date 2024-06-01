@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style(2).css">
+    <title>CALCULATOR LOGIC WITH JAVASCRIPT</title>
+
+        
+</head>
+<body>
+    <h1>CALCULATOR APP</h1>
+    <div class="calc">
+        <br/>
+        <table>
+            <tr>
+                <td colspan="4"><input types="text" id="result" disabled></td>
+            </tr>
+            
+            <tr>
+                <td colspan="3"><input type="button" value="C" onclick ="clearNum()" class="clear"></td>
+                <td><input type="button" value="." onclick ="appendDec()"class="dot"></td>
+                <td><input types="button" value="*" onclick="times()" class="times"></td>
+                
+            </tr>
+
+
+            <tr>
+                <td><input types="button" value="1" onclick="appendNumber(1)" class="num-btn"></td>
+                <td><input types="button" value="2" onclick="appendNumber(2)"  class="num-btn"></td>
+                <td><input types="button" value="3" onclick="appendNumber(3)"  class="num-btn"></td>
+                <td><input types="button" value="/" onclick="divide()" class="divide"></td>
+                
+            </tr>
+                <td><input types="button" value="4" onclick="appendNumber(4)"  class="num-btn"></td>
+                <td><input types="button" value="5" onclick="appendNumber(5)"  class="num-btn"></td>
+                <td><input types="button" value="6" onclick="appendNumber(6)"  class="num-btn"></td>
+                <td><input types="button" value="-" onclick="minus()" class="minus"></td>
+           <tr>
+                <td><input types="button" value="7" onclick="appendNumber(7)"  class="num-btn"></td>
+                <td><input types="button" value="8" onclick="appendNumber(8)"  class="num-btn"></td>
+                <td><input types="button" value="9" onclick="appendNumber(9)"  class="num-btn"></td>               
+                <td><input types="button" value="+" onclick="add()" class="plus"></td>
+           </tr>
+                <td><input type="button" value="DEL" onclick ="deleteNum()" class="delete"></td>
+                <td><input types="button" value="0" onclick="appendNumber(0)"  class="zero"></td>
+                <td><input type="button" value="%" onclick="calculatePercentage()" class="delete"></td>  
+                <td><input types="button" value="=" onclick="calculate()" class="equals"></td>
+               
+
+           <tr>
+
+           </tr>
+        </table>
+
+
+    </div>
+    
+    
+
+
+    
+
+
+
+    <script>
+        let currentInput ='';
+        let currentOperator='';
+
+        function appendNumber(number){
+            currentInput += number;
+            document.getElementById('result'). value = currentInput;
+        }
+
+        function add() {
+            currentOperator = "+";
+            currentInput+= currentOperator;
+            document.getElementById('result').value=currentInput;
+        }
+
+        function appendDec() {
+            if (currentInput.indexOf('.') === -1) { // Check if decimal point already exists
+                currentInput += '.';
+                document.getElementById('result').value = currentInput;
+            }
+        }
+
+
+        function calculate() {
+            const result= eval(currentInput);
+            document.getElementById('result').value= result;
+            currentInput = result.toString();
+            currentOperator= '';
+        }
+
+        function clearNum() {
+            currentInput = '';
+            currentOperator = '';
+            document.getElementById('result').value = '';
+        }
+
+        function minus() {
+            currentOperator = '-';
+            currentInput += currentOperator;
+            document.getElementById('result').value = currentInput;
+        }
+
+        function times() {
+            currentOperator = '*';
+            currentInput += currentOperator;
+            document.getElementById('result').value = currentInput;
+        }
+
+        function calculatePercentage() {
+            const result = parseFloat(currentInput) / 100;
+            document.getElementById('result').value = result;
+            currentInput = result.toString();
+        }
+
+        function divide() {
+            currentOperator = '/';
+            currentInput += currentOperator;
+            document.getElementById('result').value = currentInput;
+        }
+        function deleteNum() {
+            currentInput = currentInput.slice(0, -1); // Remove the last character
+            document.getElementById('result').value = currentInput;
+        }
+
+    </script>
+
+
+    
+</body>
+</html>
